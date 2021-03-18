@@ -43,10 +43,9 @@ const handlePizzaSubmit = async event => {
 	if (!pizzaName || !createdBy || !toppings.length) {
 		return;
 	}
+	const formData = { pizzaName, createdBy, size, toppings };
 
 	try {
-		const formData = { pizzaName, createdBy, size, toppings };
-
 		const response = await fetch('/api/pizzas', {
 			method: 'POST',
 			headers: {
@@ -61,6 +60,7 @@ const handlePizzaSubmit = async event => {
 		console.log(postResponse);
 	} catch (err) {
 		console.log(err);
+		saveRecord(formData);
 	}
 };
 
